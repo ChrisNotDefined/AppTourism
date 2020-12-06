@@ -1,5 +1,6 @@
 package com.devchrisap.apptourism
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -25,6 +26,8 @@ class MainActivity : AppCompatActivity() {
             }
             Toast.makeText(applicationContext,"Bienvenido " + userProfile.userName,
                 Toast.LENGTH_SHORT).show()
+            var intent = Intent(this, CityListActivity::class.java)
+            startActivity(intent)
         }
         else {
             Toast.makeText(applicationContext,"No existe el usuario",
