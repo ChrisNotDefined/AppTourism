@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">AppTourism</string>
+    <string name="APIBaseUrl">http://localhost:3000</string>
 </resources>
