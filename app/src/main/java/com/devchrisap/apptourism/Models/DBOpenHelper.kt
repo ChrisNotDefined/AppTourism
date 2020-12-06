@@ -1,4 +1,4 @@
-package com.devchrisap.apptourism.Models
+ package com.devchrisap.apptourism.Models
 
 import android.content.Context
 import android.database.sqlite.SQLiteDatabase
