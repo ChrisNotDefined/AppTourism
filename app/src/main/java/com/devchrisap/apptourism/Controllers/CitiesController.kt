@@ -45,7 +45,7 @@ class CitiesController {
             override fun onResponse(call: Call<List<City>>, response: Response<List<City>>) {
                 when (response.code()) {
                     200 -> {
-                        Log.i("Entro http 200", cityList.toString())
+                        Log.i("Entro city 200", cityList.toString())
                         cityList = emptyList()
                         cityList = response.body()!!
 
@@ -68,7 +68,8 @@ class CitiesController {
         })
     }
 
-    fun getCity(cityID: String): City? {
+    // Retornará el llamado para manejar las respuestas
+    fun getCity(cityID: String): Call<City> {
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
@@ -76,6 +77,8 @@ class CitiesController {
 
         val restClient: RestClient = retrofit.create(RestClient::class.java)
 
-        return null
+        val call: Call<City> = restClient.obtenerCiudadDe(cityID)
+
+        return call
     }
 }

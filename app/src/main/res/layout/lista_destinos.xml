@@ -27,6 +27,7 @@
 
                 android:scaleType="centerCrop"
                 app:layout_constraintBottom_toTopOf="@+id/txtCityName"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:srcCompat="@tools:sample/backgrounds/scenic" />
@@ -37,7 +38,7 @@
                 android:layout_height="wrap_content"
                 android:background="#9200BCD4"
                 android:padding="3dp"
-                android:text="City Name"
+                android:text="Cargando..."
                 android:textSize="30sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
