@@ -41,22 +41,22 @@ class DbUsers(context: Context) {
     }
 
     fun updateUser(user: User){
-        database.rawQuery(
+        database.execSQL(
             """
             update tblUsers set 
                         userName = '${user.userName}', password = '${user.password}', imgBase64 = '${user.imgBase64}' 
                         where id = ${user.id}
-        """.trimIndent(), null
+        """.trimIndent()
         )
         database.close()
     }
 
     fun deleteUser(id: Int){
-        database.rawQuery(
+        database.execSQL(
             """
             delete from tblUsers 
                         where id = $id
-        """.trimIndent(), null
+        """.trimIndent()
         )
         database.close()
     }
