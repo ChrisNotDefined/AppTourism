@@ -33,13 +33,14 @@ class DbUsers(context: Context) {
     }
 
     fun newUser(userName: String, password: String, imageBase64: String){
-        database.rawQuery("""
+        database.execSQL("""
             insert into tblUsers values 
                         (null, '$userName', '$password', '$imageBase64')
-        """.trimIndent(), null)
+        """.trimIndent())
+        database.close()
     }
 
-    fun newUser(user: User){
+    fun updateUser(user: User){
         database.rawQuery(
             """
             update tblUsers set 
@@ -47,6 +48,7 @@ class DbUsers(context: Context) {
                         where id = ${user.id}
         """.trimIndent(), null
         )
+        database.close()
     }
 
     fun deleteUser(id: Int){
@@ -56,5 +58,25 @@ class DbUsers(context: Context) {
                         where id = $id
         """.trimIndent(), null
         )
+        database.close()
+    }
+
+    fun detectUserName(userName: String): Cursor {
+        return database.rawQuery(
+            """
+            select * from tblUsers 
+                        where userName = '$userName'
+        """.trimIndent(), null
+        )
+        database.close()
+    }
+
+    fun getAllUsers(): Cursor {
+        return database.rawQuery(
+            """
+            select * from tblUsers 
+        """.trimIndent(), null
+        )
+        database.close()
     }
 }

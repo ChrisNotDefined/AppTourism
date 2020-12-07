@@ -10,9 +10,9 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class ImageService() {
-    fun base64(bm: Bitmap): String? {
+    fun base64(bm: Bitmap?): String? {
         val baos = ByteArrayOutputStream()
-        bm.compress(Bitmap.CompressFormat.JPEG, 100, baos)
+        bm?.compress(Bitmap.CompressFormat.JPEG, 10, baos)
         val b = baos.toByteArray()
         return Base64.encodeToString(b, Base64.DEFAULT)
     }

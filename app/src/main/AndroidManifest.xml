@@ -24,6 +24,7 @@
         <activity
             android:name=".CityListActivity"
             android:parentActivityName=".MainActivity" />
+        <activity android:name=".RegistroUsuarios"/>
     </application>
 
 </manifest>
