@@ -21,6 +21,16 @@ class DBOpenHelper(context: Context) : SQLiteOpenHelper(context, DBName, null, D
         )
 
         db!!.execSQL(
+            """
+                    create table tblUserFavorites (
+                    idUser integer ,
+                    idPlace text,
+                    idCity integer
+                )
+                """.trimIndent()
+        )
+
+        db!!.execSQL(
                 """
                     insert into tblUsers values 
                         (null, 'ChrisNotDefined', 'Chris123', ''),
