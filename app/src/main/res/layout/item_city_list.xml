@@ -1,10 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.sulek.ssml.SimpleSwipeMenuLayout
-    android:id="@+id/swipeContainer"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<io.sulek.ssml.SimpleSwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
+
+    <LinearLayout
+        android:id="@+id/backGroundContainer"
+        android:layout_width="100dp"
+        android:layout_height="0dp"
+        android:orientation="horizontal">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:gravity="center"
+                android:src="@drawable/ic_edit_white" />
+        </FrameLayout>
+    </LinearLayout>
+
     <LinearLayout
         android:id="@+id/itemLista"
         android:layout_width="match_parent"
@@ -54,9 +72,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:text="Clima"
-                    android:textAlignment="center"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
                     android:textColor="#E91E63"
                     android:textSize="18sp" />
@@ -66,9 +83,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:text="30000"
-                    android:textAlignment="center"
                     android:textColor="#E91E63"
                     android:textSize="18sp" />
             </LinearLayout>

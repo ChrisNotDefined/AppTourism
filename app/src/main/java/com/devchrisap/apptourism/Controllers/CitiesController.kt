@@ -5,6 +5,7 @@ import android.util.Log
 import android.view.View
 import android.widget.ProgressBar
 import androidx.recyclerview.widget.RecyclerView
+import com.devchrisap.apptourism.Adapters.CityAdapter
 import com.devchrisap.apptourism.Entities.City
 import com.devchrisap.apptourism.Interfaces.RestClient
 import retrofit2.Call
@@ -35,7 +36,7 @@ class CitiesController {
 
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://localhost:3000/cities/")
+            .baseUrl("http://192.168.1.102:3000")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -51,8 +52,10 @@ class CitiesController {
                         cityList = emptyList()
                         cityList = response.body()!!
 
-                        mAdapter = CitiesAda
-
+                        mAdapter = CityAdapter(cityList)
+                        recyclerViewCities.adapter = mAdapter
+                        mAdapter!!.notifyDataSetChanged()
+                        progressBar.visibility = View.GONE
                     }
                     401 -> {
                     }
@@ -62,7 +65,8 @@ class CitiesController {
             }
 
             override fun onFailure(call: Call<List<City>>, t: Throwable) {
-                TODO("Not yet implemented")
+                System.out.println(t)
+                progressBar.visibility = View.GONE
             }
         })
     }
