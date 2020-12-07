@@ -1,13 +1,19 @@
 package com.devchrisap.apptourism
 
 import android.os.Bundle
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.devchrisap.apptourism.Controllers.CitiesController
 import io.sulek.ssml.SSMLLinearLayoutManager
 import kotlinx.android.synthetic.main.lista_ciudades.*
+import kotlinx.android.synthetic.main.lista_ciudades.view.*
 
-class CityListActivity : AppCompatActivity() {
+class CityListActivity : Fragment() {
 
     lateinit var citiesController: CitiesController
 
@@ -15,21 +21,30 @@ class CityListActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.lista_ciudades)
-
-        loadData()
-
     }
 
-    private fun loadData() {
-        lstCities.setHasFixedSize(true)
+    override fun onCreateView(
+        inflater: LayoutInflater, container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        // Inflate the layout for this fragment
+        var cityView: View = inflater.inflate(R.layout.lista_ciudades, container, false)
+        loadData(cityView)
+        return cityView
+    }
 
-        layoutManager = SSMLLinearLayoutManager(this)
-        lstCities.layoutManager = layoutManager
+
+    private fun loadData(cityView: View) {
+        Toast.makeText(context!!.applicationContext,"Entro",
+            Toast.LENGTH_SHORT).show()
+        cityView.lstCities.setHasFixedSize(true)
+
+        layoutManager = SSMLLinearLayoutManager(context!!.applicationContext)
+        cityView.lstCities.layoutManager = layoutManager
 
         citiesController = CitiesController()
 
-        citiesController.getCities(lstCities, applicationContext, pgBarLoading)
+        citiesController.getCities(cityView.lstCities, context!!.applicationContext, cityView.pgBarLoading)
     }
 
 

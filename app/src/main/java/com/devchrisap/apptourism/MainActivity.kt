@@ -26,7 +26,7 @@ class MainActivity : AppCompatActivity() {
             }
             Toast.makeText(applicationContext,"Bienvenido " + userProfile.userName,
                 Toast.LENGTH_SHORT).show()
-            var intent = Intent(this, CityListActivity::class.java)
+            var intent = Intent(this, NavviewPrincipal::class.java)
             startActivity(intent)
         }
         else {

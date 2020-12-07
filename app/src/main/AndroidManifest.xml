@@ -21,9 +21,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".CityListActivity"
-            android:parentActivityName=".MainActivity" />
+        <activity android:name=".NavviewPrincipal" android:parentActivityName=".NavviewPrincipal"/>
         <activity
             android:name=".DestinyListActivity"
             android:parentActivityName=".CityListActivity" />
