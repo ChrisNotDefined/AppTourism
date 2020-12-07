@@ -8,7 +8,7 @@
     android:backgroundTintMode="src_atop">
 
     <io.sulek.ssml.SimpleSwipeMenuLayout
-        android:id="@+id/swipeContainer"
+        android:id="@+id/destSwipeContainer"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginBottom="641dp"
@@ -68,7 +68,7 @@
                 android:paddingStart="5dp">
 
                 <TextView
-                    android:id="@+id/lbltitulo"
+                    android:id="@+id/lblDestTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Nombre de Destino "
@@ -84,12 +84,12 @@
                     android:orientation="horizontal">
 
                     <TextView
-                        android:id="@+id/lblBuget"
+                        android:id="@+id/lblRating"
                         android:layout_width="wrap_content"
                         android:layout_height="match_parent"
                         android:layout_weight="1"
                         android:gravity="center"
-                        android:text="30000"
+                        android:text="5 estrellas"
                         android:textColor="#FFFFFF"
                         android:textSize="18sp" />
                 </LinearLayout>

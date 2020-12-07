@@ -1,6 +1,11 @@
 package com.devchrisap.apptourism.Controllers
 
+import android.content.Context
 import android.util.Log
+import android.view.View
+import android.widget.ProgressBar
+import androidx.recyclerview.widget.RecyclerView
+import com.devchrisap.apptourism.Adapters.DestinyAdapter
 import com.devchrisap.apptourism.Entities.Destiny
 import com.devchrisap.apptourism.Interfaces.RestClient
 import com.devchrisap.apptourism.R
@@ -14,7 +19,25 @@ class DestiniesController {
     var destiniesList: List<Destiny> = emptyList()
     var baseUrl: String = "https://lit-lowlands-87518.herokuapp.com/"
 
-    fun getDestinies() {
+    lateinit var mAdapter: RecyclerView.Adapter<*>
+    lateinit var recyclerViewDestinies: RecyclerView
+    lateinit var progressBar: ProgressBar
+    lateinit var context: Context
+
+    fun getDestiniesFrom(
+        cityId: String,
+        recyclerView: RecyclerView,
+        context: Context,
+        progressControl: ProgressBar
+    ) {
+
+        this.context = context
+
+        this.progressBar = progressControl
+        progressBar.visibility = View.VISIBLE
+
+        recyclerViewDestinies = recyclerView
+
         val retrofit = Retrofit.Builder()
             .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
@@ -22,15 +45,20 @@ class DestiniesController {
 
         val restClient: RestClient = retrofit.create(RestClient::class.java)
 
-        val call: Call<List<Destiny>> = restClient.cargarDestinosDe("1")
+        val call: Call<List<Destiny>> = restClient.cargarDestinosDe(cityId)
 
         call.enqueue(object : Callback<List<Destiny>> {
             override fun onResponse(call: Call<List<Destiny>>, response: Response<List<Destiny>>) {
                 when (response.code()) {
                     200 -> {
+                        Log.i("Entro http 200", destiniesList.toString())
                         destiniesList = emptyList()
                         destiniesList = response.body()!!
-                        Log.i("Entro http 200", destiniesList.toString())
+
+                        mAdapter = DestinyAdapter(destiniesList)
+                        recyclerViewDestinies.adapter = mAdapter
+                        mAdapter!!.notifyDataSetChanged()
+                        progressControl.visibility = View.GONE
                     }
                     401 -> {
 
@@ -43,6 +71,7 @@ class DestiniesController {
 
             override fun onFailure(call: Call<List<Destiny>>, t: Throwable) {
                 Log.e("Failed getdestinies", t.toString())
+                progressControl.visibility = View.GONE
             }
         })
 

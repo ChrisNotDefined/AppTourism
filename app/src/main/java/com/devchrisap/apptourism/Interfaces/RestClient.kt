@@ -19,13 +19,13 @@ interface RestClient {
      * Para obtener el listado de destinos de una ciudad
      * @param cityId El ID de la ciudad
      * */
-    @GET("by-city/{cityId}")
+    @GET("destinies/by-city/{cityId}")
     fun cargarDestinosDe(@Path("cityId") cityId: String): Call<List<Destiny>>
 
     /**
      * Para obtener el destino con ese ID
      * @param destinyId ID del Destino
      */
-    @GET("by-id/{destinyId}")
+    @GET("destinies/by-id/{destinyId}")
     fun cargarDestino(@Path("destinyId") destinyId: String): Call<Destiny>
 }

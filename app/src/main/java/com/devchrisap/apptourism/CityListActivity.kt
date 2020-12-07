@@ -29,7 +29,7 @@ class CityListActivity : AppCompatActivity() {
 
         citiesController = CitiesController()
 
-        citiesController.getCities(lstCities, applicationContext, "", pgBarLoading)
+        citiesController.getCities(lstCities, applicationContext, pgBarLoading)
     }
 
 

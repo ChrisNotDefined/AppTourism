@@ -19,12 +19,11 @@ class CitiesController {
     lateinit var recyclerViewCities: RecyclerView
     lateinit var progressBar: ProgressBar
     lateinit var context: Context
-    private val searchQuery = ""
-    lateinit var listCitySearch: List<City>
     var cityList: List<City> = emptyList()
 
     fun getCities(
-        recyclerView: RecyclerView, context: Context, query: String, progressControl: ProgressBar) {
+        recyclerView: RecyclerView, context: Context, progressControl: ProgressBar
+    ) {
 
         this.context = context
 
@@ -32,7 +31,7 @@ class CitiesController {
         progressBar.visibility = View.VISIBLE
 
         recyclerViewCities = recyclerView
-        listCitySearch = ArrayList()
+        //listCitySearch = ArrayList()
 
 
         val retrofit = Retrofit.Builder()
