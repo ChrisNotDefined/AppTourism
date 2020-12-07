@@ -4,7 +4,9 @@
     android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="?android:attr/selectableItemBackground"
+    android:background="@drawable/cielo"
+    android:backgroundTint="#75000000"
+    android:backgroundTintMode="src_atop"
     android:clickable="true">
 
     <LinearLayout
@@ -22,18 +24,18 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_gravity="center"
-                android:src="@drawable/ic_estrella_empty"/>
+                android:src="@drawable/ic_estrella_empty" />
         </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
-        android:padding="10dp"
         android:id="@+id/itemLista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#FDD4E2"
-        android:backgroundTint="#FDD4E2"
+        android:background="#00BCD4"
+        android:backgroundTint="#00BCD4"
         android:orientation="horizontal"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -43,7 +45,7 @@
             android:id="@+id/cities_image"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:background="#E91E63"
+            android:background="#2196F3"
             android:padding="5dp"
             android:src="@drawable/ic_launcher_foreground"
             app:civ_border_color="#CCC"
@@ -62,7 +64,7 @@
                 android:text="Título"
                 android:textAlignment="textStart"
                 android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#E91E63"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp"
                 android:textStyle="bold" />
 
@@ -79,7 +81,7 @@
                     android:gravity="center"
                     android:text="Clima"
                     android:textAppearance="@style/TextAppearance.AppCompat.Medium"
-                    android:textColor="#E91E63"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp" />
 
                 <TextView
@@ -89,7 +91,7 @@
                     android:layout_weight="1"
                     android:gravity="center"
                     android:text="30000"
-                    android:textColor="#E91E63"
+                    android:textColor="#FFFFFF"
                     android:textSize="18sp" />
             </LinearLayout>
 
