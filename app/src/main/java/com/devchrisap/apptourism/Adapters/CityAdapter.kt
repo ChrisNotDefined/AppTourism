@@ -2,11 +2,13 @@ package com.devchrisap.apptourism.Adapters
 
 import android.content.Context
 import android.content.Intent
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.devchrisap.apptourism.DestinyListActivity
 import com.devchrisap.apptourism.Entities.City
@@ -48,9 +50,13 @@ class CityAdapter(private val cityModel: List<City>) :
         })
 
         holder.container.setOnClickListener {
-            var intent = Intent(it.context, DestinyListActivity::class.java)
-            intent.putExtra("CityID", id)
-            it.getContext().startActivity(intent)
+            var fragment = DestinyListActivity()
+            fragment.arguments = Bundle()
+            fragment.arguments!!.putString("cityID", id.toString())
+            (it.context as FragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         holder.container.apply(cityModel[position].isExpanded)

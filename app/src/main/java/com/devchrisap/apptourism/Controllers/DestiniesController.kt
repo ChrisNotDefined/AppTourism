@@ -45,6 +45,7 @@ class DestiniesController {
 
         val restClient: RestClient = retrofit.create(RestClient::class.java)
 
+        Log.i("ASKING FOR: ", cityId)
         val call: Call<List<Destiny>> = restClient.cargarDestinosDe(cityId)
 
         call.enqueue(object : Callback<List<Destiny>> {
@@ -64,7 +65,7 @@ class DestiniesController {
 
                     }
                     else -> {
-
+                        Log.e("Failed fetch", response.code().toString())
                     }
                 }
             }

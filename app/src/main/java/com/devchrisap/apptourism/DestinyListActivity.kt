@@ -17,12 +17,10 @@ import kotlinx.android.synthetic.main.lista_destinos.view.*
 class DestinyListActivity : Fragment() {
     lateinit var destiniesController: DestiniesController
     private lateinit var layoutManager: RecyclerView.LayoutManager
-    var cityId: Int? = null
+    lateinit var cityId: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        cityId = activity?.intent?.getIntExtra("CityID", 0)
-        Log.i("EXTRA", cityId.toString())
     }
 
     override fun onCreateView(
@@ -30,8 +28,11 @@ class DestinyListActivity : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        cityId = arguments?.getString("cityID")!!
         var destinyView: View = inflater.inflate(R.layout.lista_destinos, container, false)
+
         loadData(destinyView)
+
         return destinyView
     }
 
@@ -43,6 +44,11 @@ class DestinyListActivity : Fragment() {
 
         destiniesController = DestiniesController()
 
-        destiniesController.getDestiniesFrom(cityId!!.toString(), destinyView.lstDestinies, context!!.applicationContext, destinyView.pgBarLoading2)
+        destiniesController.getDestiniesFrom(
+            cityId,
+            destinyView.lstDestinies,
+            context!!.applicationContext,
+            destinyView.pgBarLoading2
+        )
     }
 }

@@ -14,7 +14,6 @@
         android:layout_height="match_parent"
         android:layout_marginStart="8dp"
         android:layout_marginEnd="8dp"
-        android:background="@drawable/cielo"
         android:backgroundTint="#75000000"
         android:backgroundTintMode="src_atop"
         app:layout_constraintBottom_toBottomOf="parent"

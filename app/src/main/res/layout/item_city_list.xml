@@ -1,100 +1,109 @@
 <?xml version="1.0" encoding="utf-8"?>
-<io.sulek.ssml.SimpleSwipeMenuLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@drawable/cielo"
-    android:backgroundTint="#75000000"
-    android:backgroundTintMode="src_atop"
-    android:clickable="true">
+    android:paddingBottom="10dp">
 
-    <LinearLayout
-        android:id="@+id/backGroundContainer"
-        android:layout_width="100dp"
-        android:layout_height="0dp"
-        android:orientation="horizontal">
 
-        <FrameLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="#7A009C">
-
-            <ImageView
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_gravity="center"
-                android:src="@drawable/ic_estrella_empty" />
-        </FrameLayout>
-    </LinearLayout>
-
-    <LinearLayout
-        android:id="@+id/itemLista"
+    <io.sulek.ssml.SimpleSwipeMenuLayout
+        android:id="@+id/swipeContainer"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="#00BCD4"
-        android:backgroundTint="#00BCD4"
-        android:orientation="horizontal"
-        android:padding="10dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/cities_image"
-            android:layout_width="70dp"
-            android:layout_height="70dp"
-            android:background="#2196F3"
-            android:padding="5dp"
-            android:src="@drawable/ic_launcher_foreground"
-            app:civ_border_color="#CCC"
-            app:civ_border_width="1dp" />
+        android:layout_height="match_parent"
+        android:background="?android:attr/selectableItemBackground"
+        android:backgroundTint="#75000000"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="10dp"
+        android:backgroundTintMode="src_atop">
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            android:paddingStart="5dp">
+            android:id="@+id/backGroundContainer"
+            android:layout_width="100dp"
+            android:layout_height="0dp"
+            android:orientation="horizontal">
 
-            <TextView
-                android:id="@+id/lblCityTitle"
+            <FrameLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="Título"
-                android:textAlignment="textStart"
-                android:textAppearance="@style/TextAppearance.AppCompat.Display1"
-                android:textColor="#FFFFFF"
-                android:textSize="24sp"
-                android:textStyle="bold" />
+                android:layout_height="match_parent"
+                android:background="#7A009C">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_estrella_empty" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/itemLista"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#00BCD4"
+            android:backgroundTint="#00BCD4"
+            android:orientation="horizontal"
+            android:padding="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/cities_image"
+                android:layout_width="70dp"
+                android:layout_height="70dp"
+                android:background="#2196F3"
+                android:padding="5dp"
+                android:src="@drawable/ic_launcher_foreground"
+                app:civ_border_color="#CCC"
+                app:civ_border_width="1dp" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="horizontal">
+                android:orientation="vertical"
+                android:paddingStart="5dp">
 
                 <TextView
-                    android:id="@+id/lblClimate"
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="Clima"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                    android:id="@+id/lblCityTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Título"
+                    android:textAlignment="textStart"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Display1"
                     android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                    android:textSize="24sp"
+                    android:textStyle="bold" />
 
-                <TextView
-                    android:id="@+id/lblBudget"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:layout_weight="1"
-                    android:gravity="center"
-                    android:text="30000"
-                    android:textColor="#FFFFFF"
-                    android:textSize="18sp" />
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/lblClimate"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="Clima"
+                        android:textAppearance="@style/TextAppearance.AppCompat.Medium"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/lblBudget"
+                        android:layout_width="wrap_content"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        android:gravity="center"
+                        android:text="30000"
+                        android:textColor="#FFFFFF"
+                        android:textSize="18sp" />
+                </LinearLayout>
+
             </LinearLayout>
-
         </LinearLayout>
-    </LinearLayout>
-</io.sulek.ssml.SimpleSwipeMenuLayout>
+    </io.sulek.ssml.SimpleSwipeMenuLayout>
+</LinearLayout>

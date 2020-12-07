@@ -8,10 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.devchrisap.apptourism.Adapters.CityAdapter
 import com.devchrisap.apptourism.Entities.City
 import com.devchrisap.apptourism.Interfaces.RestClient
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
+import retrofit2.*
 import retrofit2.converter.gson.GsonConverterFactory
 
 class CitiesController {
@@ -20,6 +17,7 @@ class CitiesController {
     lateinit var progressBar: ProgressBar
     lateinit var context: Context
     var cityList: List<City> = emptyList()
+    val baseUrl = "https://lit-lowlands-87518.herokuapp.com"
 
     fun getCities(
         recyclerView: RecyclerView, context: Context, progressControl: ProgressBar
@@ -35,7 +33,7 @@ class CitiesController {
 
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("https://lit-lowlands-87518.herokuapp.com")
+            .baseUrl(baseUrl)
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 
@@ -68,5 +66,16 @@ class CitiesController {
                 progressBar.visibility = View.GONE
             }
         })
+    }
+
+    fun getCity(cityID: String): City? {
+        val retrofit = Retrofit.Builder()
+            .baseUrl(baseUrl)
+            .addConverterFactory(GsonConverterFactory.create())
+            .build()
+
+        val restClient: RestClient = retrofit.create(RestClient::class.java)
+
+        return null
     }
 }

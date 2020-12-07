@@ -12,8 +12,15 @@ interface RestClient {
     /**
      *  Obtener todas las ciudades
      */
-    @GET("cities") //localhost:3000/cities
+    @GET("cities")
     fun cargarCiudades(): Call<List<City>>
+
+    /**
+     * Obtener la ciudad con el id @cityId
+     * @param cityId Id de la ciudad a pedir
+     */
+    @GET("cities/{cityId}")
+    fun obtenerCiudadDe(@Path("cityId") cityId: String): Call<City>
 
     /**
      * Para obtener el listado de destinos de una ciudad
