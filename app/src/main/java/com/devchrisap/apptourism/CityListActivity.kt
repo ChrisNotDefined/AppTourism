@@ -35,8 +35,6 @@ class CityListActivity : Fragment() {
 
 
     private fun loadData(cityView: View) {
-        Toast.makeText(context!!.applicationContext,"Entro",
-            Toast.LENGTH_SHORT).show()
         cityView.lstCities.setHasFixedSize(true)
 
         layoutManager = SSMLLinearLayoutManager(context!!.applicationContext)

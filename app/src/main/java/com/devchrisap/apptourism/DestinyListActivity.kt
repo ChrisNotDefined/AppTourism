@@ -1,5 +1,6 @@
 package com.devchrisap.apptourism
 
+import android.content.Intent
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.util.Log
@@ -14,19 +15,27 @@ import com.devchrisap.apptourism.Controllers.CitiesController
 import com.devchrisap.apptourism.Controllers.DestiniesController
 import com.devchrisap.apptourism.Entities.City
 import com.squareup.picasso.Picasso
+
+import com.devchrisap.apptourism.Entities.User
+import com.devchrisap.apptourism.Entities.userFavorites
+import com.devchrisap.apptourism.Models.DbUserFavorites
+import com.devchrisap.apptourism.Models.DbUsers
 import io.sulek.ssml.SSMLLinearLayoutManager
+import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.lista_destinos.*
 import kotlinx.android.synthetic.main.lista_destinos.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
+lateinit var cityId: String
 class DestinyListActivity : Fragment() {
     lateinit var destiniesController: DestiniesController
     lateinit var citiesController: CitiesController
     private lateinit var layoutManager: RecyclerView.LayoutManager
     lateinit var cityId: String
     lateinit var citySelected: City
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

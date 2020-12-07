@@ -37,4 +37,12 @@ class DbUserFavorites(context: Context) {
         """.trimIndent())
         database.close()
     }
+
+    fun added(userFavorite: userFavorites): Cursor {
+        return database.rawQuery("""
+            select * from tblUserFavorites where 
+                idUser = ${userFavorite.idUser} and idPlace = '${userFavorite.idPlace}' and idCity = ${userFavorite.idCity}
+        """.trimIndent(), null)
+        database.close()
+    }
 }
