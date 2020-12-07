@@ -2,6 +2,7 @@ package com.devchrisap.apptourism
 
 import android.os.Bundle
 import android.os.PersistableBundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.devchrisap.apptourism.Controllers.DestiniesController
@@ -17,7 +18,7 @@ class DestinyListActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState, persistentState)
         setContentView(R.layout.lista_destinos)
         cityId = intent.getIntExtra("CityID", 0)
-
+        Log.i("EXTRA", cityId.toString())
         loadData()
     }
 

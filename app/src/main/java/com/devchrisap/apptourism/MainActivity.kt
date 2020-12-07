@@ -34,4 +34,9 @@ class MainActivity : AppCompatActivity() {
                 Toast.LENGTH_SHORT).show()
         }
     }
+
+    fun goToRegister(view: View) {
+        val intent = Intent(this, RegistroUsuarios::class.java)
+        startActivity(intent)
+    }
 }

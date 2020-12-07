@@ -37,7 +37,7 @@ class CityAdapter(private val cityModel: List<City>) :
         holder.climate.text = climate
         holder.budget.text = "$$budget pesos"
 
-        if(imageUrl != "") {
+        if (imageUrl != "") {
             Picasso.get().load(imageUrl).into(holder.imgCity)
         }
 
@@ -48,10 +48,9 @@ class CityAdapter(private val cityModel: List<City>) :
         })
 
         holder.container.setOnClickListener {
-            Toast.makeText(it.context, "Hello im: $name, my id is: $id", Toast.LENGTH_SHORT).show()
             var intent = Intent(it.context, DestinyListActivity::class.java)
             intent.putExtra("CityID", id)
-            it.context.startActivity(intent)
+            it.getContext().startActivity(intent)
         }
 
         holder.container.apply(cityModel[position].isExpanded)

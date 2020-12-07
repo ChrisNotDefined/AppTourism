@@ -30,7 +30,9 @@
         <activity
             android:name=".DestDetailActivity"
             android:parentActivityName=".DestinyListActivity" />
-        <activity android:name=".RegistroUsuarios" />
+        <activity
+            android:name=".RegistroUsuarios"
+            android:parentActivityName=".MainActivity" />
     </application>
 
 </manifest>
