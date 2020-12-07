@@ -3,7 +3,9 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/swipeContainer"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="?android:attr/selectableItemBackground"
+    android:clickable="true">
 
     <LinearLayout
         android:id="@+id/backGroundContainer"
@@ -13,17 +15,19 @@
 
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:background="#7A009C">
 
             <ImageView
-                android:layout_width="32dp"
-                android:layout_height="32dp"
-                android:gravity="center"
-                android:src="@drawable/ic_edit_white" />
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_estrella_empty"/>
         </FrameLayout>
     </LinearLayout>
 
     <LinearLayout
+        android:padding="10dp"
         android:id="@+id/itemLista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
