@@ -36,8 +36,7 @@ class NavviewPrincipal: AppCompatActivity() {
                 }
 
                 R.id.salir -> {
-                    var intent = Intent(this, MainActivity::class.java)
-                    startActivity(intent)
+                    finish()
                 }
 
             }
