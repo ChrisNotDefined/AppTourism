@@ -36,7 +36,7 @@ class CitiesController {
 
 
         val retrofit = Retrofit.Builder()
-            .baseUrl("http://192.168.1.102:3000")
+            .baseUrl("https://lit-lowlands-87518.herokuapp.com")
             .addConverterFactory(GsonConverterFactory.create())
             .build()
 

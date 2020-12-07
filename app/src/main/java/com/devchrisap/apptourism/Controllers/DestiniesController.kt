@@ -12,7 +12,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 
 class DestiniesController {
     var destiniesList: List<Destiny> = emptyList()
-    var baseUrl: String = "http://localhost:3000"
+    var baseUrl: String = "https://lit-lowlands-87518.herokuapp.com/"
 
     fun getDestinies() {
         val retrofit = Retrofit.Builder()
