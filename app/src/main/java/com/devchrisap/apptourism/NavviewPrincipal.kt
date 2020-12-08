@@ -7,7 +7,10 @@ import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import com.devchrisap.apptourism.Services.ImageService
 import kotlinx.android.synthetic.main.content_layout.*
+import kotlinx.android.synthetic.main.header_navview.*
+import kotlinx.android.synthetic.main.header_navview.view.*
 import kotlinx.android.synthetic.main.navview_principal.*
 
 var activityFather : Activity? = null
@@ -30,6 +33,10 @@ class NavviewPrincipal: AppCompatActivity() {
         supportActionBar!!.title = "Lista de ciudades"
 
         navview.menu.getItem(0).isChecked = true
+        if(userProfile.imgBase64 != "") {
+            var imageService = ImageService()
+            navview.getHeaderView(0).imgHeaderNav.setImageBitmap(imageService.bitmap(userProfile.imgBase64))
+        }
 
         navview.setNavigationItemSelectedListener { menuItem ->
             var fragmentTransation =  false
@@ -70,7 +77,7 @@ class NavviewPrincipal: AppCompatActivity() {
                     supportActionBar!!.title = menuItem.title
                 }
             }
-            // drawer_layout.openDrawer(Gravity.LEFT)
+
             drawer_layout.closeDrawers()
 
             true
