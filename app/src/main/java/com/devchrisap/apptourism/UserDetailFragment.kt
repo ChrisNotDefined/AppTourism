@@ -1,6 +1,8 @@
 package com.devchrisap.apptourism
 
 import android.Manifest
+import android.app.AlertDialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
@@ -120,6 +122,24 @@ class UserDetailFragment : Fragment() {
                         Toast.LENGTH_SHORT).show()
                 }
             }
+        }
+
+        userDetailView.btnDeleteUser.setOnClickListener {
+            val builder = AlertDialog.Builder(userDetailView.context)
+            builder.setMessage("¿Desea eliminar su perfil?")
+                .setPositiveButton("CONTINUAR",
+                    DialogInterface.OnClickListener { dialog, id ->
+                        val datasource = DbUsers(context!!.applicationContext)
+                        datasource.deleteUser(userProfile.id)
+                        activityFather!!.finish()
+                    })
+                .setNegativeButton("CANCELAR",
+                    DialogInterface.OnClickListener { dialog, id ->
+
+                    })
+            // Create the AlertDialog object and return it
+            builder.create().show()
+
         }
         return userDetailView
     }
