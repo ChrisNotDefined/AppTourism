@@ -1,7 +1,8 @@
 package com.devchrisap.apptourism
 
-import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuItem
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
@@ -16,6 +17,10 @@ class NavviewPrincipal: AppCompatActivity() {
         var next : String = ""
 
         setSupportActionBar(appbar)
+        supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_menu)
+        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
+        supportActionBar!!.setDisplayShowHomeEnabled(true);
+
         supportFragmentManager.beginTransaction()
             .replace(R.id.content_frame, CityListActivity())
             .commit()
@@ -31,8 +36,8 @@ class NavviewPrincipal: AppCompatActivity() {
 
                 R.id.listaCiudades -> {
                     next = menuItem.title.toString()
-                        fragment = CityListActivity()
-                        fragmentTransation =  true
+                    fragment = CityListActivity()
+                    fragmentTransation = true
                 }
 
                 R.id.salir -> {
@@ -49,14 +54,24 @@ class NavviewPrincipal: AppCompatActivity() {
                         .commit()
 
                     menuItem.isChecked = true
-                    Toast.makeText(applicationContext,"" + menuItem.title,
-                        Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        applicationContext, "" + menuItem.title,
+                        Toast.LENGTH_SHORT
+                    ).show()
                     supportActionBar!!.title = menuItem.title
                 }
             }
-
+            // drawer_layout.openDrawer(Gravity.LEFT)
             drawer_layout.closeDrawers()
+
             true
         }
+    }
+
+    override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
+        if (menuItem.getItemId() === android.R.id.home) {
+            drawer_layout.openDrawer(Gravity.LEFT)
+        }
+        return true
     }
 }
