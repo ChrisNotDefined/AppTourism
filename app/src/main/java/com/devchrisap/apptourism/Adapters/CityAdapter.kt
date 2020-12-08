@@ -6,6 +6,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
@@ -43,11 +44,6 @@ class CityAdapter(private val cityModel: List<City>) :
             Picasso.get().load(imageUrl).into(holder.imgCity)
         }
 
-        holder.container.setOnSwipeListener(object : OnSwipeListener {
-            override fun onSwipe(isExpanded: Boolean) {
-                cityModel[position].isExpanded = isExpanded
-            }
-        })
 
         holder.container.setOnClickListener {
             var fragment = DestinyListActivity()
@@ -58,8 +54,6 @@ class CityAdapter(private val cityModel: List<City>) :
                 .addToBackStack(null)
                 .commit()
         }
-
-        holder.container.apply(cityModel[position].isExpanded)
     }
 
     override fun getItemCount(): Int {
@@ -67,7 +61,7 @@ class CityAdapter(private val cityModel: List<City>) :
     }
 
     class ViewHolder(v: View) : RecyclerView.ViewHolder(v) {
-        val container = v.findViewById<View>(R.id.swipeContainer) as SimpleSwipeMenuLayout
+        val container = v.findViewById<View>(R.id.itemLista) as LinearLayout
 
         val title: TextView = v.findViewById<View>(R.id.lblCityTitle) as TextView
         val climate: TextView = v.findViewById<View>(R.id.lblClimate) as TextView
