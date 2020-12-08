@@ -83,18 +83,18 @@ class DestDetailActivity : Fragment() {
 
         })
 
-        btnAddFavorite.setOnClickListener {
-            if(btnAddFavorite.text.toString().equals("Agregar a favoritos")) {
+        view.btnAddFavorite.setOnClickListener {
+            if(view.btnAddFavorite.text.toString().equals("Agregar a favoritos")) {
                 val datasource = DbUserFavorites(com.devchrisap.apptourism.Adapters.context!!.applicationContext)
                 var favorite = userFavorites(userProfile.id, destinyId, cityId)
                 datasource.newUserFavoritesPlaces(favorite)
-                btnAddFavorite.text = "Eliminar de favoritos"
+                view.btnAddFavorite.text = "Eliminar de favoritos"
             }
             else {
                 val datasource = DbUserFavorites(com.devchrisap.apptourism.Adapters.context!!.applicationContext)
                 var favorite = userFavorites(userProfile.id, destinyId, cityId)
                 datasource.deleteUserFavorite(favorite)
-                btnAddFavorite.text = "Agregar a favoritos"
+                view.btnAddFavorite.text = "Agregar a favoritos"
             }
         }
 
