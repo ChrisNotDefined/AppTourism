@@ -20,6 +20,7 @@ import de.hdodenhof.circleimageview.CircleImageView
 import io.sulek.ssml.OnSwipeListener
 import io.sulek.ssml.SimpleSwipeMenuLayout
 import kotlinx.android.synthetic.main.item_destiny_list.view.*
+import java.lang.Exception
 
 
 var context: Context? = null
@@ -50,6 +51,7 @@ class DestinyAdapter(private val destinyModel: List<Destiny>) :
         } else {
             holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_empty)
         }
+        cursor.close()
 
         if (imageUrl != "") {
             Picasso.get().load(imageUrl).into(holder.imgDest)
@@ -74,22 +76,30 @@ class DestinyAdapter(private val destinyModel: List<Destiny>) :
         holder.container.apply(destinyModel[position].isExpanded)
 
         holder.container.isFavorite.setOnClickListener {
-            val cursor = datasource.added(favorite)
-            if (cursor.count > 0) {
-                datasource.deleteUserFavorite(favorite)
-                Toast.makeText(
-                    context!!.applicationContext, "Eliminado de favoritos",
-                    Toast.LENGTH_SHORT
-                ).show()
-                holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_empty)
-            } else {
-                datasource.newUserFavoritesPlaces(favorite)
-                Toast.makeText(
-                    context!!.applicationContext, "Agregado a favoritos",
-                    Toast.LENGTH_SHORT
-                ).show()
-                holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_full)
+            try {
+                val datasource = DbUserFavorites(context!!.applicationContext)
+                var cursor2 = datasource.added(favorite)
+                if (cursor2.count > 0) {
+                    datasource.deleteUserFavorite(favorite)
+                    Toast.makeText(
+                        context!!.applicationContext, "Eliminado de favoritos",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_empty)
+                } else {
+                    datasource.newUserFavoritesPlaces(favorite)
+                    Toast.makeText(
+                        context!!.applicationContext, "Agregado a favoritos",
+                        Toast.LENGTH_SHORT
+                    ).show()
+                    holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_full)
+                }
+                cursor2.close()
             }
+            catch(ex: Exception) {
+
+            }
+
         }
     }
 

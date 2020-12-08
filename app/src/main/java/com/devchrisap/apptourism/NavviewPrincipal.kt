@@ -1,5 +1,6 @@
 package com.devchrisap.apptourism
 
+import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
@@ -9,12 +10,14 @@ import androidx.fragment.app.Fragment
 import kotlinx.android.synthetic.main.content_layout.*
 import kotlinx.android.synthetic.main.navview_principal.*
 
+var activityFather : Activity? = null
 class NavviewPrincipal: AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.navview_principal)
         var actual : String = "Lista de ciudades"
         var next : String = ""
+        activityFather = this
 
         setSupportActionBar(appbar)
         supportActionBar!!.setHomeAsUpIndicator(R.drawable.ic_baseline_menu)
@@ -37,6 +40,12 @@ class NavviewPrincipal: AppCompatActivity() {
                 R.id.listaCiudades -> {
                     next = menuItem.title.toString()
                     fragment = CityListActivity()
+                    fragmentTransation = true
+                }
+
+                R.id.actualizar -> {
+                    next = menuItem.title.toString()
+                    fragment = UserDetailFragment()
                     fragmentTransation = true
                 }
 

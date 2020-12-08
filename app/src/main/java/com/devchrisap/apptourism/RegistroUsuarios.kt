@@ -61,17 +61,12 @@ class RegistroUsuarios: AppCompatActivity() {
                         Toast.LENGTH_SHORT).show()
                 }
                 else {
-                    try {
-                        var imageService = ImageService()
-                        var user = User(0, txtUserName.text.toString(), txtPassword2.text.toString(), imageService.base64(imagen).toString())
-                        datasource.newUser(user.userName, user.password, user.imgBase64)
-                        userProfile = user
-                        var intent = Intent(this, CityListActivity::class.java)
-                        startActivity(intent)
-                    } catch(error: Exception) {
-                        Toast.makeText(applicationContext,"error",
-                            Toast.LENGTH_SHORT).show()
-                    }
+                    var imageService = ImageService()
+                    var user = User(0, txtUserName.text.toString(), txtPassword2.text.toString(), imageService.base64(imagen).toString())
+                    datasource.newUser(user.userName, user.password, user.imgBase64)
+                    userProfile = user
+                    var intent = Intent(this, NavviewPrincipal::class.java)
+                    startActivity(intent)
                 }
             }
             else {
