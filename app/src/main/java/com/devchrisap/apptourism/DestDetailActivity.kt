@@ -7,8 +7,12 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.devchrisap.apptourism.Controllers.DestiniesController
 import com.devchrisap.apptourism.Entities.Destiny
+import com.devchrisap.apptourism.Entities.userFavorites
+import com.devchrisap.apptourism.Models.DbUserFavorites
 import com.squareup.picasso.Picasso
 import kotlinx.android.synthetic.main.detalle_destinos.*
+import kotlinx.android.synthetic.main.detalle_destinos.view.*
+import kotlinx.android.synthetic.main.item_destiny_list.view.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -16,7 +20,7 @@ import retrofit2.Response
 class DestDetailActivity : Fragment() {
 
     lateinit var destinyId: String
-
+    var cityId: Int = 0
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -50,6 +54,16 @@ class DestDetailActivity : Fragment() {
                             Picasso.get().load(destiny.image).into(imgDestinyDetail)
                         }
 
+                        val datasource = DbUserFavorites(com.devchrisap.apptourism.Adapters.context!!.applicationContext)
+                        cityId = destiny.cityId
+                        var favorite = userFavorites(userProfile.id, destinyId, destiny.cityId)
+                        val cursor = datasource.added(favorite)
+                        if (cursor.count > 0) {
+                            view.btnAddFavorite.text = "Eliminar de favoritos"
+                        } else {
+                            view.btnAddFavorite.text = "Agregar a favoritos"
+                        }
+
                         prgDetailDestiny.visibility = View.GONE
                     }
                     404 -> {
@@ -68,5 +82,22 @@ class DestDetailActivity : Fragment() {
             }
 
         })
+
+        btnAddFavorite.setOnClickListener {
+            if(btnAddFavorite.text.toString().equals("Agregar a favoritos")) {
+                val datasource = DbUserFavorites(com.devchrisap.apptourism.Adapters.context!!.applicationContext)
+                var favorite = userFavorites(userProfile.id, destinyId, cityId)
+                datasource.newUserFavoritesPlaces(favorite)
+                btnAddFavorite.text = "Eliminar de favoritos"
+            }
+            else {
+                val datasource = DbUserFavorites(com.devchrisap.apptourism.Adapters.context!!.applicationContext)
+                var favorite = userFavorites(userProfile.id, destinyId, cityId)
+                datasource.deleteUserFavorite(favorite)
+                btnAddFavorite.text = "Agregar a favoritos"
+            }
+        }
+
+
     }
 }

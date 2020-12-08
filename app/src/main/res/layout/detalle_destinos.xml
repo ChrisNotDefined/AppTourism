@@ -83,10 +83,12 @@
                 android:padding="30dp"
                 android:textColor="#FFFFFF"
                 android:textSize="30sp"/>
+
             <Button
+                android:id="@+id/btnAddFavorite"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:text="Añadir a Favoritos"/>
+                android:text="Añadir a Favoritos" />
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
