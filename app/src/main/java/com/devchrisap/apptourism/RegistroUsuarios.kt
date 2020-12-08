@@ -6,7 +6,6 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
-import android.os.PersistableBundle
 import android.view.View
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
@@ -16,7 +15,6 @@ import com.ablanco.imageprovider.ImageSource
 import com.devchrisap.apptourism.Entities.User
 import com.devchrisap.apptourism.Models.DbUsers
 import com.devchrisap.apptourism.Services.ImageService
-import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.registro_usuarios.*
 import kotlinx.android.synthetic.main.registro_usuarios.txtUserName
 import java.lang.Exception

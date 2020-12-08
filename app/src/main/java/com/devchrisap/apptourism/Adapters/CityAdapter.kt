@@ -1,14 +1,12 @@
 package com.devchrisap.apptourism.Adapters
 
-import android.content.Context
-import android.content.Intent
+
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.LinearLayout
 import android.widget.TextView
-import android.widget.Toast
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.devchrisap.apptourism.DestinyListActivity
@@ -16,8 +14,6 @@ import com.devchrisap.apptourism.Entities.City
 import com.devchrisap.apptourism.R
 import com.squareup.picasso.Picasso
 import de.hdodenhof.circleimageview.CircleImageView
-import io.sulek.ssml.OnSwipeListener
-import io.sulek.ssml.SimpleSwipeMenuLayout
 
 class CityAdapter(private val cityModel: List<City>) :
     RecyclerView.Adapter<CityAdapter.ViewHolder>() {

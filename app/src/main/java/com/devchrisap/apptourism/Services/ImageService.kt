@@ -3,11 +3,7 @@ package com.devchrisap.apptourism.Services
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.util.Base64
-import com.squareup.picasso.Picasso
 import java.io.ByteArrayOutputStream
-import java.lang.Exception
-import java.net.HttpURLConnection
-import java.net.URL
 
 class ImageService() {
     fun base64(bm: Bitmap?): String? {

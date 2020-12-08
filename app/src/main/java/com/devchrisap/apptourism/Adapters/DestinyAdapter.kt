@@ -1,16 +1,14 @@
 package com.devchrisap.apptourism.Adapters
 
 import android.content.Context
-import android.content.Intent
-import android.content.Intent.getIntent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
-import com.devchrisap.apptourism.AppContext
 import com.devchrisap.apptourism.DestDetailActivity
 import com.devchrisap.apptourism.Entities.Destiny
 import com.devchrisap.apptourism.Entities.userFavorites
@@ -25,6 +23,7 @@ import kotlinx.android.synthetic.main.item_destiny_list.view.*
 
 
 var context: Context? = null
+
 class DestinyAdapter(private val destinyModel: List<Destiny>) :
     RecyclerView.Adapter<DestinyAdapter.ViewHolder>() {
 
@@ -45,11 +44,10 @@ class DestinyAdapter(private val destinyModel: List<Destiny>) :
         holder.title.text = name
         holder.rating.text = "$score estrellas"
         var favorite = userFavorites(userProfile.id, id, cityId)
-        val cursor =  datasource.added(favorite)
-        if(cursor.count > 0) {
+        val cursor = datasource.added(favorite)
+        if (cursor.count > 0) {
             holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_full)
-        }
-        else {
+        } else {
             holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_empty)
         }
 
@@ -64,25 +62,27 @@ class DestinyAdapter(private val destinyModel: List<Destiny>) :
         })
 
         holder.container.setOnClickListener {
-            Toast.makeText(it.context, "Going to $name", Toast.LENGTH_SHORT).show()
-            var intent = Intent(it.context, DestDetailActivity::class.java)
-            intent.putExtra("DestinyID", id)
-            it.context.startActivity(intent)
+            var fragment = DestDetailActivity()
+            fragment.arguments = Bundle()
+            fragment.arguments!!.putString("destId", id)
+            (it.context as FragmentActivity).supportFragmentManager.beginTransaction()
+                .replace(R.id.content_frame, fragment)
+                .addToBackStack(null)
+                .commit()
         }
 
         holder.container.apply(destinyModel[position].isExpanded)
 
-        holder.container.isFavorite.setOnClickListener{
-            val cursor =  datasource.added(favorite)
-            if(cursor.count > 0) {
+        holder.container.isFavorite.setOnClickListener {
+            val cursor = datasource.added(favorite)
+            if (cursor.count > 0) {
                 datasource.deleteUserFavorite(favorite)
                 Toast.makeText(
                     context!!.applicationContext, "Eliminado de favoritos",
                     Toast.LENGTH_SHORT
                 ).show()
                 holder.container.isFavorite.setImageResource(R.drawable.ic_estrella_empty)
-            }
-            else {
+            } else {
                 datasource.newUserFavoritesPlaces(favorite)
                 Toast.makeText(
                     context!!.applicationContext, "Agregado a favoritos",
