@@ -4,7 +4,6 @@ import android.app.Activity
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuItem
-import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.devchrisap.apptourism.Services.ImageService
@@ -33,13 +32,15 @@ class NavviewPrincipal: AppCompatActivity() {
         supportActionBar!!.title = "Lista de ciudades"
 
         navview.menu.getItem(0).isChecked = true
+
+        navview.getHeaderView(0).txtnavUsername.text = userProfile.userName
         if(userProfile.imgBase64 != "") {
             var imageService = ImageService()
             navview.getHeaderView(0).imgHeaderNav.setImageBitmap(imageService.bitmap(userProfile.imgBase64))
         }
 
         navview.setNavigationItemSelectedListener { menuItem ->
-            var fragmentTransation =  false
+            var fragmentTransaction =  false
             var fragment : Fragment? =  null
 
             when(menuItem.itemId){
@@ -47,13 +48,13 @@ class NavviewPrincipal: AppCompatActivity() {
                 R.id.listaCiudades -> {
                     next = menuItem.title.toString()
                     fragment = CityListActivity()
-                    fragmentTransation = true
+                    fragmentTransaction = true
                 }
 
                 R.id.actualizar -> {
                     next = menuItem.title.toString()
                     fragment = UserDetailFragment()
-                    fragmentTransation = true
+                    fragmentTransaction = true
                 }
 
                 R.id.salir -> {
@@ -62,18 +63,15 @@ class NavviewPrincipal: AppCompatActivity() {
 
             }
 
-            if(fragmentTransation){
+            if(fragmentTransaction){
                 if(actual != next) {
                     actual = next
                     supportFragmentManager.beginTransaction()
                         .replace(R.id.content_frame, fragment!!)
+                        .addToBackStack(null)
                         .commit()
 
                     menuItem.isChecked = true
-                    Toast.makeText(
-                        applicationContext, "" + menuItem.title,
-                        Toast.LENGTH_SHORT
-                    ).show()
                     supportActionBar!!.title = menuItem.title
                 }
             }

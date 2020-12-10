@@ -2,12 +2,13 @@
 <androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Theme.AppCompat.Light.NoActionBar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/cielo"
     android:backgroundTint="#75000000"
     android:backgroundTintMode="src_atop"
-    android:fitsSystemWindows="true">
+    tools:context=".NavviewPrincipal">
 
     <com.google.android.material.appbar.AppBarLayout
         fitsSystemWindows="true"
@@ -19,23 +20,25 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:layout_scrollFlags="scroll|exitUntilCollapsed"
+            app:layout_scrollFlags="scroll|enterAlways"
             app:layout_scrollInterpolator="@android:anim/decelerate_interpolator"
-            app:title="Destiny Name">
+            app:title="Cargando...">
 
             <ImageView
                 android:id="@+id/imgDestinyDetail"
                 android:layout_width="match_parent"
-                android:layout_height="225dp"
+                android:layout_height="wrap_content"
                 android:scaleType="centerCrop"
                 app:layout_collapseMode="parallax"
-                app:srcCompat="@drawable/pueblito" />
+                app:srcCompat="@drawable/pueblito"
+                android:backgroundTint="#B5000000"
+                android:tintMode="screen"/>
 
             <androidx.appcompat.widget.Toolbar
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
                 app:layout_collapseMode="pin"
-                app:popupTheme="@style/ThemeOverlay.AppCompat.Light" />
+                app:popupTheme="@style/AppTheme" />
 
             <ProgressBar
                 android:id="@+id/prgDetailDestiny"
@@ -51,7 +54,8 @@
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+        android:id="@+id/nestedScroll"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -64,12 +68,13 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
-                android:layout_marginTop="24dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
                 android:clickable="false"
-                android:foregroundTint="#E91E63"
+                android:foregroundTint="#FFC107"
                 android:isIndicator="true"
                 android:progressBackgroundTint="#FFFFFF"
-                android:progressTint="#E91E63"
+                android:progressTint="#FFC107"
                 android:secondaryProgressTint="#00BCD4" />
 
             <TextView
@@ -77,8 +82,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="600dp"
                 android:layout_marginTop="32dp"
-                android:background="#00BCD4"
-                android:text="Descripcion e Historia"
+                android:background="#B500BCD4"
                 android:textAlignment="center"
                 android:padding="30dp"
                 android:textColor="#FFFFFF"
@@ -86,9 +90,12 @@
 
             <Button
                 android:id="@+id/btnAddFavorite"
-                android:layout_width="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="Añadir a Favoritos" />
+                android:layout_marginTop="10dp"
+                android:text="Añadir a Favoritos"
+                android:backgroundTint="#00BCD4"/>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

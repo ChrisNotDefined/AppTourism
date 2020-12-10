@@ -28,12 +28,12 @@ class DestDetailActivity : Fragment() {
     ): View? {
         destinyId = arguments?.getString("destId")!!
         var detailView: View = inflater.inflate(R.layout.detalle_destinos, container, false)
-        loadData(detailView)
         return detailView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        loadData(view)
         prgDetailDestiny.visibility = View.VISIBLE
     }
 
@@ -46,7 +46,7 @@ class DestDetailActivity : Fragment() {
                 when (response.code()) {
                     200 -> {
                         var destiny = response.body()!!
-                        toolBarDestDetail.title = destiny.name
+                        toolBarDestDetail?.title = destiny.name
                         rtDestiny.rating = destiny.score
                         txtDescriptionDestiny.text = destiny.description
 
