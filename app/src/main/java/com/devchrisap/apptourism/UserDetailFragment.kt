@@ -36,7 +36,12 @@ class UserDetailFragment : Fragment() {
         // Inflate the layout for this fragment
         var userDetailView: View = inflater.inflate(R.layout.edit_usuarios, container, false)
         var imageService = ImageService()
-        userDetailView.imgUser2.setImageBitmap(imageService.bitmap(userProfile.imgBase64))
+        if(!userProfile.imgBase64.equals("")) {
+            userDetailView.imgUser2.setImageBitmap(imageService.bitmap(userProfile.imgBase64))
+        }
+
+        userDetailView.txtusername.setText(userProfile.userName)
+
 
         userDetailView.imgUser2.setOnClickListener {
             if (ActivityCompat.checkSelfPermission(context!!.applicationContext, Manifest.permission.CAMERA)
