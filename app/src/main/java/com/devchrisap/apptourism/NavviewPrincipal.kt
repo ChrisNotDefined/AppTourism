@@ -39,6 +39,8 @@ class NavviewPrincipal: AppCompatActivity() {
             navview.getHeaderView(0).imgHeaderNav.setImageBitmap(imageService.bitmap(userProfile.imgBase64))
         }
 
+
+
         navview.setNavigationItemSelectedListener { menuItem ->
             var fragmentTransaction =  false
             var fragment : Fragment? =  null
@@ -84,6 +86,11 @@ class NavviewPrincipal: AppCompatActivity() {
 
     override fun onOptionsItemSelected(menuItem: MenuItem): Boolean {
         if (menuItem.getItemId() === android.R.id.home) {
+            navview.getHeaderView(0).txtnavUsername.text = userProfile.userName
+            if(userProfile.imgBase64 != "") {
+                var imageService = ImageService()
+                navview.getHeaderView(0).imgHeaderNav.setImageBitmap(imageService.bitmap(userProfile.imgBase64))
+            }
             drawer_layout.openDrawer(Gravity.LEFT)
         }
         return true

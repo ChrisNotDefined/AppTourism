@@ -4,8 +4,6 @@
         <item
             android:id="@+id/listaCiudades"
             android:title="Lista de ciudades" />
-        <item  android:id="@+id/favoritos"
-            android:title="Favoritos" />
         <item
             android:id="@+id/actualizar"
             android:title="Actualizar perfil" />
